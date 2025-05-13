@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin Panel - Key Creator</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="admin-bg">
+  <div class="admin-container">
+    <h2>🎮 ADMIN PANEL</h2>
+    <input type="text" id="newKey" placeholder="Create New Key" />
+    <input type="number" id="expiryMinutes" placeholder="Expiry in Minutes" />
+    <button onclick="createKey()">Create Key</button>
+    <p id="statusMsg"></p>
+  </div>
+
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+  <script src="firebase-config.js"></script>
+  <script>
+    function createKey() {
+      const key = document.getElementById("newKey").value;
+      const minutes = parseInt(document.getElementById("expiryMinutes").value);
+      const expiryTime = Date.now() + minutes * 60000;
+      firebase.database().ref("keys/" + key).set({ expiry: expiryTime }).then(() => {
+        document.getElementById("statusMsg").innerText = "✅ Key created!";
+      });
+    }
+  </script>
+</body>
+</html>

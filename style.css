@@ -1,0 +1,47 @@
+body {
+  font-family: 'Segoe UI', sans-serif;
+  text-align: center;
+  color: white;
+}
+.login-bg {
+  background: url('https://wallpaperaccess.com/full/664231.jpg') no-repeat center center fixed;
+  background-size: cover;
+}
+.admin-bg {
+  background: #1e1e2f;
+}
+.main-bg {
+  background: url('https://wallpapercave.com/wp/wp8719681.jpg') no-repeat center center fixed;
+  background-size: cover;
+}
+.login-container, .admin-container, .predict-container {
+  margin: 100px auto;
+  padding: 30px;
+  background: rgba(0,0,0,0.7);
+  width: 300px;
+  border-radius: 15px;
+}
+input {
+  padding: 10px;
+  width: 90%;
+  margin: 10px;
+  border-radius: 10px;
+}
+button {
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: none;
+  background: orange;
+  color: white;
+  font-weight: bold;
+}
+#prediction {
+  font-size: 1.5em;
+  margin-top: 20px;
+}
+#timer {
+  font-size: 1.2em;
+}
+#history {
+  margin-top: 20px;
+}

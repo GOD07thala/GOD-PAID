@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>91 CLUB Prediction</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="main-bg">
+  <div class="predict-container">
+    <h2>🔮 91 CLUB BIG/SMALL PREDICTION</h2>
+    <div id="timer">⏳ Next in 60s</div>
+    <div id="prediction">Prediction: Waiting...</div>
+    <div id="history"></div>
+  </div>
+
+  <script>
+    let counter = 60;
+    let history = [];
+
+    function getPrediction() {
+      const result = Math.floor(Math.random() * 10);
+      const prediction = result >= 5 ? "BIG" : "SMALL";
+      const level2 = result % 2 === 0 ? "EVEN" : "ODD";
+      const entry = `Level 1: ${prediction} | Level 2: ${level2}`;
+      document.getElementById("prediction").innerText = `Prediction: ${entry}`;
+      history.unshift(entry);
+      document.getElementById("history").innerHTML = "<h4>History</h4>" + history.slice(0, 5).join("<br>");
+    }
+
+    setInterval(() => {
+      counter--;
+      document.getElementById("timer").innerText = `⏳ Next in ${counter}s`;
+      if (counter === 0) {
+        counter = 60;
+        getPrediction();
+      }
+    }, 1000);
+  </script>
+</body>
+</html>

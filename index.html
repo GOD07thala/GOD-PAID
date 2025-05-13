@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>91 CLUB Login</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="login-bg">
+  <div class="login-container">
+    <h2>🔐 91 CLUB LOGIN</h2>
+    <input type="text" id="keyInput" placeholder="Enter Access Key" />
+    <button onclick="login()">Login</button>
+    <p id="loginMsg"></p>
+  </div>
+
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+  <script src="firebase-config.js"></script>
+  <script>
+    function login() {
+      const key = document.getElementById("keyInput").value;
+      firebase.database().ref("keys/" + key).once("value", (snap) => {
+        if (snap.exists() && Date.now() < snap.val().expiry) {
+          localStorage.setItem("key", key);
+          window.location.href = "main.html";
+        } else {
+          document.getElementById("loginMsg").innerText = "Invalid or expired key.";
+        }
+      });
+    }
+  </script>
+</body>
+</html>
